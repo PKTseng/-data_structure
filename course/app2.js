@@ -5,50 +5,27 @@ let numbers = [
   298,
 ]
 
-function binarySearch(list, number) {
+function binarySearch(arr, n) {
   let min = 0
-  let max = list.length - 1
+  let max = arr.length - 1
+  let step = 0
 
   while (min <= max) {
+    step++
     let middle = Math.floor((max + min) / 2)
-    if (number < list[middle]) {
-      max = middle - 1
-    } else if (number > list[middle]) {
+    if (n > arr[middle]) {
       min = middle + 1
-    } else if (number === list[middle]) {
-      console.log('middle', middle)
+    } else if (n < arr[middle]) {
+      max = middle - 1
+    } else if (n === arr[middle]) {
+      console.log('Found number ' + n + ' at position ' + middle)
+      console.log('Found it after ' + step + ' steps.')
       return middle
     }
   }
-  console.log('fail', number)
+
+  console.log('Cannot find number ' + n)
   return -1
 }
 
-binarySearch(numbers, 15)
-
-// =============================================================
-
-// function binarySearch(arr, n) {
-//   let min = 0
-//   let max = arr.length - 1
-//   let step = 0
-
-//   while (min <= max) {
-//     step++
-//     let middle = Math.floor((max + min) / 2)
-//     if (n > arr[middle]) {
-//       min = middle + 1
-//     } else if (n < arr[middle]) {
-//       max = middle - 1
-//     } else if (n === arr[middle]) {
-//       console.log('Found number ' + n + ' at position ' + middle)
-//       console.log('Found it after ' + step + ' steps.')
-//       return middle
-//     }
-//   }
-
-//   console.log('Cannot find number ' + n)
-//   return -1
-// }
-
-// binarySearch(numbers, 213) // 6 - 7
+binarySearch(numbers, 100) // 6 - 7
